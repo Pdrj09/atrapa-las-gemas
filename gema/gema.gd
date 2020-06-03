@@ -11,7 +11,7 @@ func _ready():
 		Tween.EASE_IN_OUT
 	)
 
-
+# This is a comment
 
 func pickup():
 	$Tween.start()
