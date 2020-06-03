@@ -1,0 +1,56 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/player/idle/player-idle-1.png" type="Texture" id=1]
+[ext_resource path="res://assets/player/idle/player-idle-2.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/run/player-run-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/hurt/player-hurt-2.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/run/player-run-4.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/run/player-run-6.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/idle/player-idle-3.png" type="Texture" id=7]
+[ext_resource path="res://assets/player/idle/player-idle-4.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/run/player-run-5.png" type="Texture" id=9]
+[ext_resource path="res://assets/player/run/player-run-3.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/hurt/player-hurt-1.png" type="Texture" id=11]
+[ext_resource path="res://assets/player/run/player-run-2.png" type="Texture" id=12]
+[ext_resource path="res://jugador/Jugador.gd" type="Script" id=13]
+[ext_resource path="res://assets/audio/Cherry.wav" type="AudioStream" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "hart",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 398.72, 260.55 )
+
+[node name="Jugador" type="Area2D"]
+scale = Vector2( 0.0629494, 0.0866506 )
+script = ExtResource( 13 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 30.2727, 26 )
+frames = SubResource( 1 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.8083, 118.326 )
+shape = SubResource( 2 )
+
+[node name="gema" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+[connection signal="area_entered" from="." to="." method="_on_Jugador_area_entered"]

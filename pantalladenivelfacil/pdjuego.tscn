@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://pantalladenivelfacil/Control.gd" type="Script" id=1]
+[ext_resource path="res://gema/gema.gd" type="Script" id=2]
+[ext_resource path="res://jugador/Jugador.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gema/gema.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Kenney Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/audio/Hit.wav" type="AudioStream" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+const B_L = 4
+var ni = 0
+var trest = 0
+var punt = 1
+export (PackedScene) var gem
+
+
+func _ready():
+	randomize()
+	OS.center_window()
+	trest = 30
+	$datos.update_tiempo(trest)
+	spawn_gem()
+	
+func _process(delta):
+	if $contenedordegema.get_child_count() == 0:
+		ni += 1
+		var Au = AudioStreamPlayer.new()
+		Au.stream = load(\"res://assets/audio/Level.wav\")
+		add_child(Au)
+		Au.play()
+		trest += 7
+		spawn_gem()
+
+
+func spawn_gem():
+	for index in range(B_L + ni):
+		var gema = gem.instance()
+		gema.position = Vector2(rand_range(0, 480), rand_range(0,720))
+		$contenedordegema.add_child(gema)
+
+
+
+func _on_tiempodejuego_timeout():
+	trest -= 1
+	$datos.update_tiempo(trest)
+	if trest <= 0:
+		perdiste()
+	$datos.update_tiempo(trest)
+	
+	
+
+func perdiste():
+	$perdiste.play()
+	$tiempodejuego.stop()
+	get_tree().change_scene(\"res://has perdido/perdiste.tscn\")
+
+
+func _on_Jugador_picked():
+	$datos.update_puntuacion(punt)
+	punt += 1
+
+
+
+"
+
+[sub_resource type="DynamicFont" id=2]
+size = 38
+font_data = ExtResource( 5 )
+
+[node name="pdjuego" type="Node2D"]
+script = SubResource( 1 )
+gem = ExtResource( 4 )
+
+[node name="Jugador" parent="." instance=ExtResource( 3 )]
+
+[node name="contenedordegema" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="datos" type="Control" parent="."]
+margin_right = 480.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="datos"]
+anchor_right = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="puntuacion" type="Label" parent="datos/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 470.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="tiempo" type="Label" parent="datos/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 470.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="tiempodejuego" type="Timer" parent="."]
+autostart = true
+
+[node name="perdiste" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+[connection signal="picked" from="Jugador" to="." method="_on_Jugador_picked"]
+[connection signal="timeout" from="tiempodejuego" to="." method="_on_tiempodejuego_timeout"]
+[connection signal="finished" from="perdiste" to="." method="_on_perdiste_finished"]

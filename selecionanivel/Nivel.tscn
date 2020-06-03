@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Kenney Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://selecionanivel/Nivel.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 43
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = ExtResource( 1 )
+
+[node name="Nivel" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.12128
+margin_right = -2.12128
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 267.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 20.8787, 442.879 ]
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 22.6274
+margin_bottom = 237.627
+custom_fonts/font = SubResource( 1 )
+custom_constants/shadow_offset_x = 10
+custom_constants/line_spacing = 10
+custom_constants/shadow_offset_y = 10
+custom_constants/shadow_as_outline = 10
+text = "Seleciona
+el 
+nivel"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="facil" type="Button" parent="."]
+margin_left = 23.0
+margin_top = 293.87
+margin_right = 445.0
+margin_bottom = 405.87
+custom_fonts/font = SubResource( 2 )
+text = "Facil"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="medio" type="Button" parent="."]
+margin_left = 23.0
+margin_top = 421.698
+margin_right = 445.0
+margin_bottom = 533.698
+custom_fonts/font = SubResource( 3 )
+text = "medio"
+
+[node name="dificil" type="Button" parent="."]
+margin_left = 23.0
+margin_top = 550.392
+margin_right = 445.0
+margin_bottom = 662.392
+custom_fonts/font = SubResource( 4 )
+text = "Proximamente"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="facil" to="." method="_on_facil_pressed"]
+[connection signal="pressed" from="medio" to="." method="_on_medio_pressed"]
+[connection signal="pressed" from="dificil" to="." method="_on_dificil_pressed"]

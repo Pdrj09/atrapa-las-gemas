@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://jugadormedio/Jugador.gd" type="Script" id=1]
+[ext_resource path="res://jugadormedio/Jugador.tscn" type="PackedScene" id=2]
+[ext_resource path="res://pantallanivelmedio/pantalla.gd" type="Script" id=3]
+[ext_resource path="res://malo/malo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gema/gema.tscn" type="PackedScene" id=5]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 0.707092, 0.707123 )
+script = ExtResource( 3 )
+gema = ExtResource( 5 )
+mal = ExtResource( 4 )
+
+[node name="Jugador" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+
+[node name="contenedordemalo" type="Node2D" parent="."]
+
+[node name="contenedordegema" type="Node2D" parent="."]
