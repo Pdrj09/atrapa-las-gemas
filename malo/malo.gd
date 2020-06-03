@@ -23,3 +23,11 @@ func pickups():
 	queue_free()
 
 
+
+func pickup():
+	#$Tween.start()
+	#yield($Tween, "tween_completed")
+	
+#func _on_Tween_tween_completed(object, key):
+	queue_free()
+
