@@ -10,7 +10,7 @@ func _on_facil_pressed():
 
 
 func _on_medio_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://pantallanivelmedio/pantalla.tscn")
 
 
 func _on_dificil_pressed():

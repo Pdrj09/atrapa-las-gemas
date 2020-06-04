@@ -17,26 +17,19 @@ _global_script_class_icons={
 
 config/name="Atrapa las gemas "
 run/main_scene="res://inicio/inicio.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="klm"
 config/icon="res://Icon.png"
-
-[autoload]
-
-UserData="*res://addons/github-integration/scripts/user_data.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
-RestHandler="*res://addons/github-integration/scripts/RestHandler.gd"
 
 [display]
 
 window/size/width=480
 window/size/height=720
 window/handheld/orientation="portrait"
-mouse_cursor/custom_image="res://Icon.png"
+mouse_cursor/custom_image="res://raton.png"
+mouse_cursor/tooltip_position_offset=Vector2( 20, 20 )
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "github-integration", "godot-git-control.funabab" )
 
 [input_devices]
 

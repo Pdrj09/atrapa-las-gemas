@@ -4,7 +4,10 @@ extends Node2D
 const G_P = 4
 const G_M = 0
 const G_N = 0
+var punt = 0
+var ball = 0
 var niv = 0
+var Nb = 0
 export (PackedScene) var gema
 export (PackedScene) var mal
 
@@ -17,12 +20,17 @@ func _ready():
 func _process(delta):
 	if $contenedordegema.get_child_count() == 0:
 		niv += 1
+		Nb += 1
 		var Au = AudioStreamPlayer.new()
 		Au.stream = load("res://assets/audio/Level.wav")
 		add_child(Au)
 		Au.play()
 		spawn_gema()
 		spawn_mal()
+	elif $contenedordemalo.get_child_count() == Nb - 1:
+		get_tree().change_scene("res://has perdidomedio/perdiste.tscn")
+
+
 
 	
 	
@@ -43,3 +51,7 @@ func spawn_mal_delete():
 		var malo = mal.instance()
 		malo.position = Vector2(rand_range(0, 470), rand_range(0,700))
 		$contenedordemalo.add_child(malo)
+
+func _on_Jugador_picked():
+	$Control.update_puntuacionmedio(punt)
+	punt += 1

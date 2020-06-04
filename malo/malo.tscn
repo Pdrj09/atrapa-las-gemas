@@ -16,9 +16,10 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 27.5022
+radius = 19.4708
 
 [node name="gema" type="Area2D" groups=[
+"gema",
 "mal",
 ]]
 script = ExtResource( 6 )
@@ -27,7 +28,7 @@ script = ExtResource( 6 )
 scale = Vector2( 3.34615, 3.15385 )
 frames = SubResource( 1 )
 animation = "gema"
-frame = 4
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

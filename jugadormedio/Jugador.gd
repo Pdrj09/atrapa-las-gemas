@@ -1,9 +1,10 @@
 extends Area2D
 
+signal pickeds
 signal picked
 # Declare member variables here. Examples:
 var v = Vector2.ZERO
-var ve = 700
+var ve = 500
 
 func _ready():
 	OS.center_window()

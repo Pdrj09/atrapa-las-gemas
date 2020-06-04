@@ -1,5 +1,6 @@
 extends Control
 
+
 func update_tiempo(new_val):
 	$MarginContainer/tiempo.text = str(new_val)
 

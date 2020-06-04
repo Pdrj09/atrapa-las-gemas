@@ -49,9 +49,3 @@ func _on_Jugador_area_entered(area):
 		$gema.play()
 		emit_signal("picked")
 		area.pickup()
-	if area.is_in_group("gema"):
-		$malo.play()
-		emit_signal("picked")
-		area.pickup()
-
-
