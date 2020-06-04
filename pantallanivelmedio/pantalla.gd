@@ -4,7 +4,7 @@ extends Node2D
 const G_P = 4
 const G_M = 0
 const G_N = 0
-var punt = 0
+var punt = 1
 var ball = 0
 var niv = 0
 var Nb = 0
@@ -51,6 +51,7 @@ func spawn_mal_delete():
 		var malo = mal.instance()
 		malo.position = Vector2(rand_range(0, 470), rand_range(0,700))
 		$contenedordemalo.add_child(malo)
+
 
 func _on_Jugador_picked():
 	$Control.update_puntuacionmedio(punt)

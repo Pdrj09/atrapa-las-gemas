@@ -35,20 +35,21 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 anchor_right = 1.0
-margin_bottom = 14.0
+margin_top = 11.3137
+margin_bottom = 64.3137
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="puntiacionmedio" type="Label" parent="Control/MarginContainer"]
 margin_right = 477.0
-margin_bottom = 116.0
+margin_bottom = 53.0
 custom_fonts/font = SubResource( 1 )
 custom_constants/shadow_offset_x = 10
 custom_constants/line_spacing = 10
 custom_constants/shadow_offset_y = 10
 custom_constants/shadow_as_outline = 19
-text = "puntuacion en 
-desarrollo"
+text = "0"
 align = 1
+[connection signal="picked" from="Jugador" to="." method="_on_Jugador_picked"]
 [connection signal="pickeds" from="Jugador" to="." method="_on_Jugador_pickeds"]
